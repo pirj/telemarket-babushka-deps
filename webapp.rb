@@ -12,7 +12,7 @@ end
 
 dep 'app running', :app_path, :app_repo do
   requires [
-    'app cloned'.with(app_path, app_repo),
+    'app repo up to date'.with(app_path, app_repo),
     'app bundled'.with(app_path)
   ]
 
@@ -34,14 +34,25 @@ dep 'rvm' do
   }
 end
 
-dep 'app cloned', :app_path, :app_repo do
-  requires 'path exists'.with app_path
+dep 'app repo up to date', :app_path, :app_repo do
+  requires 'app cloned'.with(app_path, app_repo)
 
   met? {
     cd(app_path) { shell? "git fetch; git log HEAD.. --oneline"}
   }
   meet {
     cd(app_path) { shell "git pull" }
+  }
+end
+
+dep 'app cloned', :app_path, :app_repo do
+  requires 'path exists'.with app_path
+
+  met? {
+    cd(app_path) { shell? "ls .git"}
+  }
+  meet {
+    cd(app_path) { shell "git clone #{app_repo} ." }
   }
 end
 
