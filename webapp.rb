@@ -27,10 +27,10 @@ end
 
 dep 'rvm' do
   met? {
-    shell? 'which rvm'
+    shell 'which rvm'
   }
   meet {
-    shell 'curl -L https://get.rvm.io | sudo bash -s stable --ruby'
+    shell 'curl -L https://get.rvm.io | bash -s stable --ruby'
   }
 end
 
@@ -38,19 +38,19 @@ dep 'app cloned', :app_path, :app_repo do
   requires 'path exists'.with app_path
 
   met? {
-    shell? "cd #{app_path}; git fetch; git log HEAD.. --oneline"
+    cd(app_path) { shell? "git fetch; git log HEAD.. --oneline"}
   }
   meet {
-    shell "cd #{app_path}; git pull"
+    cd(app_path) { shell "git pull" }
   }
 end
 
 dep 'app bundled', :app_path do
   met? {
-    shell? "cd #{app_path}; bundle check"
+    cd(app_path) { shell? "bundle check" }
   }
   meet {
-    shell "cd #{app_path}; bundle install"
+    cd(app_path) { shell "bundle install" }
   }
 end
 
@@ -59,7 +59,7 @@ dep 'path exists', :path do
     shell? "ls #{path}"
   }
   meet {
-    shell "mkdir -p #{path}"
+    cd("~") { shell "mkdir -p #{path}" }
   }
 end
 
