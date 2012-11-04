@@ -38,10 +38,10 @@ dep 'app repo up to date', :app_path, :app_repo do
   requires 'app cloned'.with(app_path, app_repo)
 
   met? {
-    cd(app_path) { shell? "git fetch; git log HEAD.. --oneline"}
+    cd(app_path) { shell? "git fetch origin; git log HEAD..origin/master --oneline"}
   }
   meet {
-    cd(app_path) { shell "git pull" }
+    cd(app_path) { shell "git pull origin master" }
   }
 end
 
