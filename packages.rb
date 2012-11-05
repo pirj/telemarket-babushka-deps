@@ -143,4 +143,6 @@ dep 'zlib headers.managed' do
   }
   provides []
 end
-dep 'build-essential.managed'
+dep 'build-essential.managed' do
+  provides 'make'
+end
