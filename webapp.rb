@@ -1,3 +1,20 @@
+dep 'app', :app_path, :app_repo do
+  requires [
+    'web app'.with(app_path, app_repo),
+    'freeswitch.running'.with(app_path),
+    'call server running'.with(app_path)
+  ]
+end
+
+dep 'call server running', :app_path do
+  met? {
+    shell? "netstat -an | grep -E '^tcp.*[.:]8084 +.*LISTEN'"
+  }
+  meet {
+    cd(app) {shell "./calls & disown"}
+  }
+end
+
 dep 'web app', :app_path, :app_repo do
   requires [
     'imagemagick-dev',
