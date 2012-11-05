@@ -25,7 +25,7 @@ dep 'app running', :app_path, :app_repo do
   }
   meet {
     # shell "thin -d -e production --chdir /home/pirj/production -S /home/pirj/production.sock start" 
-    shell "bundle exec thin -d -e production --chdir #{app_path} start" 
+    cd(app_path) {shell "bundle exec thin -d -e production start"}
   }
 end
 
@@ -74,7 +74,8 @@ dep 'webapp bundled', :root do
     shell? 'bundle check', :cd => root, :log => true
   }
   meet {
-    shell "bundle install --without 'development test'", :cd => root, :log => true
+    # shell "bundle install --without 'development test'", :cd => root, :log => true
+    shell "bundle install", :cd => root, :log => true
   }
 end
 
