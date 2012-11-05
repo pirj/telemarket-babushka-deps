@@ -55,7 +55,7 @@ dep 'postgres.managed', :version do
   version.default!(shell('psql --version').val_for('psql (PostgreSQL)')[/^\d\.\d/]) if which('psql')
   requires 'set.locale'
   installs {
-    via :apt, ["postgresql-#{owner.version}", "libpq-dev"]
+    via :apt, ["postgresql-#{owner.version}", "postgresql-client-#{owner.version}", "libpq-dev"]
     via :brew, "postgresql"
   }
   provides "psql ~> #{version}.0"
