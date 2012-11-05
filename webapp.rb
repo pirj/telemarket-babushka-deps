@@ -10,14 +10,14 @@ dep 'web app', :app_path, :app_repo do
     # ssh "sudo babushka pirj:postgres.managed version=9.1"
     'rvm',
     # 'rvm ruby 1.9.3',
-    'app running'.with(app_path, app_repo)
+    'app running'.with("app_path", app_repo)
   ]
 end
 
 dep 'app running', :app_path, :app_repo do
   requires [
     'app repo up to date'.with(app_path, app_repo),
-    'app bundled'.with(app_path, 'production')
+    'webapp bundled'.with(app_path)
   ]
 
   met? {
@@ -66,6 +66,15 @@ dep 'path exists', :path do
   }
   meet {
     cd("~") { shell "mkdir -p #{path}" }
+  }
+end
+
+dep 'webapp bundled', :root do
+  met? {
+    shell? 'bundle check', :cd => root, :log => true
+  }
+  meet {
+    shell "bundle install --without 'development test'", :cd => root, :log => true
   }
 end
 
