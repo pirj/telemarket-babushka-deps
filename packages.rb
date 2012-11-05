@@ -146,7 +146,9 @@ end
 dep 'build-essential.managed' do
   provides 'make'
 end
-dep 'libmagickwand-dev.managed'
+dep 'libmagickwand-dev.managed' do
+  provides []
+end
 dep 'imagemagick-dev' do
   requires 'imagemagick.managed', 'libmagickwand-dev.managed'
 end
