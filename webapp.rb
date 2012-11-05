@@ -2,7 +2,7 @@ dep 'web app', :app_path, :app_repo do
   requires [
     'imagemagick-dev',
     'libxml.managed',
-    'libxslt.managed'
+    'libxslt.managed',
     'build-essential.managed',
     'postgres.managed'.with('9.1'),
     # 'nginx running',
