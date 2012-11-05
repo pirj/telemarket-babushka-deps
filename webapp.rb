@@ -32,7 +32,7 @@ end
 
 dep 'rvm' do
   met? {
-    shell 'which rvm'
+    shell 'ls .rvm'
   }
   meet {
     shell 'curl -L https://get.rvm.io | bash -s stable --ruby'
