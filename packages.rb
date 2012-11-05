@@ -150,3 +150,4 @@ dep 'libmagickwand-dev.managed'
 dep 'imagemagick-dev' do
   requires 'imagemagick.managed', 'libmagickwand-dev.managed'
 end
+dep 'redis-server.managed'
