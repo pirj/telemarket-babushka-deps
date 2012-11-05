@@ -11,7 +11,7 @@ dep 'web app', :app_path, :app_repo do
     # ssh "sudo babushka pirj:postgres.managed version=9.1"
     'rvm',
     # 'rvm ruby 1.9.3',
-    'app running'.with("app_path", app_repo)
+    'app running'.with("~/#{app_path}", app_repo)
   ]
 end
 
