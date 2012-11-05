@@ -22,11 +22,11 @@ dep 'app running', :app_path, :app_repo do
   ]
 
   met? {
-    shell "curl localhost:80 | grep 'head'"
+    shell "curl localhost:3000 | grep 'head'"
   }
   meet {
     # shell "thin -d -e production --chdir /home/pirj/production -S /home/pirj/production.sock start" 
-    cd(app_path) {shell "bundle exec thin -d -e production start"}
+    cd(app_path) {shell "bundle exec thin -d start"}
   }
 end
 
@@ -84,10 +84,6 @@ end
 # override `` in ssh block, provide stout/stderr
  # . freeswitch
  # . fail2ban
- # . redis
- # . 
- # . bundle
- # . run
  # ... rest of interesting deps
 
 # babushka 'pirj:db'
