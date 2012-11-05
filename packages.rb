@@ -143,3 +143,4 @@ dep 'zlib headers.managed' do
   }
   provides []
 end
+dep 'build-essential.managed'
