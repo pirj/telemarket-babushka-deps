@@ -2,7 +2,11 @@ dep 'web app', :app_path, :app_repo do
   requires [
     'imagemagick-dev',
     'build-essential.managed',
+<<<<<<< HEAD
     'postgres.managed'.with('9.1'),
+=======
+    'postgres.managed'.with('9.1')
+>>>>>>> 0af82e12698c5522a2a983b3b4d07c73810c3b84
     # 'nginx running',
     # 'postgres running',
     # ssh "sudo babushka pirj:postgres.managed version=9.1"
