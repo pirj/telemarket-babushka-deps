@@ -1,6 +1,6 @@
 dep 'web app', :app_path, :app_repo do
   requires [
-    'imagemagick.managed',
+    'imagemagick-dev',
     'build-essential.managed',
     # 'nginx running',
     # 'postgres running',
