@@ -13,7 +13,7 @@ end
 dep 'app running', :app_path, :app_repo do
   requires [
     'app repo up to date'.with(app_path, app_repo),
-    'app bundled'.with(app_path)
+    'app bundled'.with(app_path, 'production')
   ]
 
   met? {
@@ -53,15 +53,6 @@ dep 'app cloned', :app_path, :app_repo do
   }
   meet {
     cd(app_path) { shell "git clone #{app_repo} ." }
-  }
-end
-
-dep 'app bundled', :app_path do
-  met? {
-    cd(app_path) { shell? "bundle check" }
-  }
-  meet {
-    cd(app_path) { shell "bundle install" }
   }
 end
 
