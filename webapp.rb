@@ -25,7 +25,7 @@ dep 'app running', :app_path, :app_repo do
   }
   meet {
     # shell "thin -d -e production --chdir /home/pirj/production -S /home/pirj/production.sock start" 
-    shell "thin -d -e production --chdir #{app_path} start" 
+    shell "bundle exec thin -d -e production --chdir #{app_path} start" 
   }
 end
 
