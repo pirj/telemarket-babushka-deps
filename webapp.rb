@@ -39,7 +39,7 @@ dep 'app running', :app_path, :app_repo do
   ]
 
   met? {
-    shell "curl localhost:3000 | grep 'head'"
+    shell? "ls #{Dir.home}/#{app_path}/thin.sock"
   }
   meet {
     cd(app_path) { 
