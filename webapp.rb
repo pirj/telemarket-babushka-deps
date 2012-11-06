@@ -28,22 +28,23 @@ dep 'web app', :app_path, :app_repo, :domain do
     # 'postgres running',
     # ssh "sudo babushka pirj:postgres.managed version=9.1"
     'rvm',
-    'app running'.with("~/#{app_path}", app_repo)
+    'app running'.with(app_path, app_repo)
   ]
 end
 
 dep 'app running', :app_path, :app_repo do
+  app_full_path = Dir.home / app_path
   requires [
-    'app repo up to date'.with(app_path, app_repo),
-    'webapp bundled'.with(app_path)
+    'app repo up to date'.with(app_full_path, app_repo),
+    'webapp bundled'.with(app_full_path)
   ]
 
   met? {
-    shell? "ls #{Dir.home}/#{app_path}/thin.sock"
+    shell? "ls #{app_full_path}/thin.sock"
   }
   meet {
     cd(app_path) { 
-      shell "bundle exec thin -d -e production --chdir #{Dir.home}/#{app_path} -S #{Dir.home}/#{app_path}/thin.sock start"
+      shell "bundle exec thin -d -e production --chdir #{app_full_path} -S #{app_full_path}/thin.sock start"
     }
     # cd(app_path) {shell "bundle exec thin -d start"}
   }
