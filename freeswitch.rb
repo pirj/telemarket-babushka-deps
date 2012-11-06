@@ -35,8 +35,8 @@ dep 'freeswitch packages built' do
       shell './bootstrap.sh'
     }
     cd('freeswitch-src') {
-      shell 'mk-build-deps -i'
-      shell 'dpkg-buildpackage -b'
+      shell 'mk-build-deps -i', :log => true
+      shell 'dpkg-buildpackage -b', :log => true
       shell 'mkdir dbg'
       shell "mv *dbg_*.deb dbg"
     }
