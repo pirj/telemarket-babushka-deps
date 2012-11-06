@@ -40,7 +40,7 @@ dep 'app running', :app_path, :app_repo do
   ]
 
   met? {
-    shell? "ls #{app_full_path}/thin.sock"
+    shell? "ls #{app_full_path}/tmp/pids/thin.pid"
   }
   meet {
     cd(app_path) { 
