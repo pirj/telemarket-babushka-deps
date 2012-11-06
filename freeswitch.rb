@@ -18,7 +18,7 @@ dep 'freeswitch installed' do
     shell? 'which freeswitch'
   }
   meet {
-    cd('freeswitch-src') {
+    cd('freeswitch-deb') {
       sudo "dpkg -i libfreeswitch1_*.deb"
       sudo "dpkg -i freeswitch*.deb"
     }
@@ -28,18 +28,20 @@ end
 dep 'freeswitch packages built' do
   requires ['freeswitch repo cloned', 'freeswitch deps installed']
   met? {
-
+    shell? 'ls freeswitch-deb'
   }
   meet {
     cd('freeswitch-src/debian') {
       shell './bootstrap.sh'
     }
     cd('freeswitch-src') {
-      shell 'mk-build-deps -i', :log => true
-      shell 'dpkg-buildpackage -b', :log => true
-      shell 'mkdir dbg'
-      shell "mv *dbg_*.deb dbg"
+      sudo 'mk-build-deps -i', :log => true
+      sudo 'dpkg-buildpackage -b', :log => true
     }
+
+    shell 'mkdir -p freeswitch-deb/dbg'
+    shell "mv *dbg_*.deb freeswitch-deb/dbg"
+    shell "mv *.deb freeswitch-deb"
   }
 end
 
