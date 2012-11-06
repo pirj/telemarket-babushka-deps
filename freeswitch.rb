@@ -7,7 +7,7 @@ dep 'freeswitch running', :config_path do
   }
   meet {
     cd(config_path) {
-      shell "freeswitch -run . -log ./log -db . -conf ."
+      shell "freeswitch -run . -log ./log -db . -conf . -nc"
     }
   }
 end
