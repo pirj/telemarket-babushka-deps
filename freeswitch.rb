@@ -13,7 +13,7 @@ dep 'freeswitch running', :config_path do
 end
 
 dep 'freeswitch installed' do
-  require 'freeswitch packages built'
+  requires 'freeswitch packages built'
   met? {
     shell? 'which freeswitch'
   }
