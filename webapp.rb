@@ -1,7 +1,7 @@
 dep 'app', :app_path, :app_repo do
   requires [
     'web app'.with(app_path, app_repo),
-    'freeswitch.running'.with(app_path),
+    'freeswitch running'.with(app_path),
     'call server running'.with(app_path)
   ]
 end
@@ -11,6 +11,7 @@ dep 'call server running', :app_path do
     shell? "netstat -an | grep -E '^tcp.*[.:]8084 +.*LISTEN'"
   }
   meet {
+    # TODO: use tmux session
     cd(app) {shell "./calls & disown"}
   }
 end
