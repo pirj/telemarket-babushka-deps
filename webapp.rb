@@ -1,6 +1,6 @@
-dep 'app', :app_path, :app_repo do
+dep 'app', :app_path, :app_repo, :domain do
   requires [
-    'web app'.with(app_path, app_repo),
+    'web app'.with(app_path, app_repo, domain),
     'freeswitch running'.with(app_path),
     'call server running'.with(app_path)
   ]
@@ -16,7 +16,7 @@ dep 'call server running', :app_path do
   }
 end
 
-dep 'web app', :app_path, :app_repo do
+dep 'web app', :app_path, :app_repo, :domain do
   requires [
     'imagemagick-dev',
     'libxml.managed',
@@ -24,11 +24,10 @@ dep 'web app', :app_path, :app_repo do
     'build-essential.managed',
     'postgres.managed'.with('9.1'),
     'redis-server.managed',
-    # 'nginx running',
+    'nginx running'.with(Dir.home, app_path, domain),
     # 'postgres running',
     # ssh "sudo babushka pirj:postgres.managed version=9.1"
     'rvm',
-    # 'rvm ruby 1.9.3',
     'app running'.with("~/#{app_path}", app_repo)
   ]
 end
@@ -43,8 +42,10 @@ dep 'app running', :app_path, :app_repo do
     shell "curl localhost:3000 | grep 'head'"
   }
   meet {
-    # shell "thin -d -e production --chdir /home/pirj/production -S /home/pirj/production.sock start" 
-    cd(app_path) {shell "bundle exec thin -d start"}
+    cd(app_path) { 
+      shell "bundle exec thin -d -e production --chdir #{Dir.home}/#{app_path} -S #{Dir.home}/#{app_path}/thin.sock start"
+    }
+    # cd(app_path) {shell "bundle exec thin -d start"}
   }
 end
 
@@ -98,31 +99,14 @@ dep 'webapp bundled', :root do
   }
 end
 
-# restrict ssh for deployer, use su - to log in
-# override `` in ssh block, provide stout/stderr
- # . freeswitch
- # . fail2ban
- # ... rest of interesting deps
+# 'peerj:www user and group'
+
+# . fail2ban
 
 # babushka 'pirj:db'
 
 # babushka 'pirj:nginx.logrotate'
 # babushka 'pirj:rack.logrotate'
 
-# ? babushka 'pirj:dnsmasq'
-
-# babushka 'pirj:apt packages removed'
 # babushka 'pirj:lamp stack removed'
 # babushka 'pirj:postfix removed'
-
-# babushka 'pirj:ready for update.repo'
-# babushka 'pirj:up to date.repo'
-
-# babushka 'pirj:before deploy'
-# babushka 'pirj:on deploy'
-# babushka 'pirj:after deploy'
-
-# babushka 'pirj:on correct branch.repo'
-
-# babushka 'pirj:maintenance page up'
-# babushka 'pirj:maintenance page down'
