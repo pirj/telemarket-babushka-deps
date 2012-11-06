@@ -40,7 +40,7 @@ dep 'freeswitch packages built' do
       shell 'mkdir dbg'
       shell "mv *dbg_*.deb dbg"
     }
-  end
+  }
 end
 
 dep 'freeswitch deps installed' do
