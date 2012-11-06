@@ -52,7 +52,7 @@ dep 'freeswitch deps installed' do
     'libdb-dev.managed', 'bison.managed', 'ladspa-sdk.managed', 'libogg-dev.managed',
     'libasound2-dev.managed', 'libsnmp-dev.managed', 'libflac-dev.managed',
     'libvorbis-dev.managed', 'libvlc-dev.managed', 'default-jdk.managed',
-    'gcj-jdk.managed', 'libperl-dev.managed', 'libyaml-devpython-dev.managed',
+    'gcj-jdk.managed', 'libperl-dev.managed', 'libyaml-dev.managed',
     'erlang-dev.managed', 'doxygen.managed', 'uuid-dev.managed', 'libgdbm-dev.managed',
     'libdb-dev.managed', 'bison.managed', 'ladspa-sdk.managed', 'libogg-dev.managed',
     'libasound2-dev.managed', 'libsnmp-dev.managed', 'libflac-dev.managed',
@@ -82,7 +82,7 @@ dep 'doxygen.managed'
   'erlang-dev', 'doxygen', 'uuid-dev', 'libgdbm-dev', 'libdb-dev', 'bison',
   'ladspa-sdk', 'libogg-dev', 'libasound2-dev', 'libsnmp-dev', 'libflac-dev',
   'libvorbis-dev', 'libvlc-dev', 'default-jdk', 'gcj-jdk', 'libperl-dev',
-  'libyaml-devpython-dev', 'erlang-dev', 'uuid-dev', 'libgdbm-dev',
+  'libyaml-dev', 'erlang-dev', 'uuid-dev', 'libgdbm-dev',
   'libdb-dev', 'bison', 'ladspa-sdk', 'libogg-dev', 'libasound2-dev', 'libsnmp-dev',
   'libflac-dev', 'libvorbis-dev', 'libvlc-dev', 'default-jdk', 'gcj-jdk',
   'libperl-dev', 'libyaml-dev'].each do |package|
