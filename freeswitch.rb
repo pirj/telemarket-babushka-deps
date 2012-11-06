@@ -45,8 +45,8 @@ end
 
 dep 'freeswitch deps installed' do
   requires [
-    'subversion.managed', 'build-essential.managed', 'autoconf.managed',
-    'automake.managed', 'libtool.managed', 'libncurses5.managed',
+    'devscripts.managed', 'equivs.managed', 'subversion.managed', 'build-essential.managed',
+    'autoconf.managed', 'automake.managed', 'libtool.managed', 'libncurses5.managed',
     'libncurses5-dev.managed', 'libjpeg-dev.managed', 'python-dev.managed',
     'erlang-dev.managed', 'doxygen.managed', 'uuid-dev.managed', 'libgdbm-dev.managed',
     'libdb-dev.managed', 'bison.managed', 'ladspa-sdk.managed', 'libogg-dev.managed',
@@ -74,6 +74,10 @@ dep 'subversion.managed' do
   provides 'svn'
 end
 
+dep 'devscripts.managed' do
+  provides 'mk-build-deps'
+end
+
 dep 'automake.managed'
 dep 'autoconf.managed'
 dep 'doxygen.managed'
@@ -85,7 +89,7 @@ dep 'doxygen.managed'
   'libyaml-dev', 'erlang-dev', 'uuid-dev', 'libgdbm-dev',
   'libdb-dev', 'bison', 'ladspa-sdk', 'libogg-dev', 'libasound2-dev', 'libsnmp-dev',
   'libflac-dev', 'libvorbis-dev', 'libvlc-dev', 'default-jdk', 'gcj-jdk',
-  'libperl-dev', 'libyaml-dev'].each do |package|
+  'libperl-dev', 'libyaml-dev', 'equivs'].each do |package|
   dep "#{package}.managed" do
     provides []
   end
