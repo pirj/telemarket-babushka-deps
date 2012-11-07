@@ -12,7 +12,7 @@ dep 'call server running', :app_path do
   }
   meet {
     # TODO: use tmux session
-    cd(app) {shell "./calls & disown"}
+    cd(app_path) {shell "./calls & disown"}
   }
 end
 
