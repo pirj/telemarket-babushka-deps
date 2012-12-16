@@ -58,29 +58,29 @@ http {
     }
   }
 
-#  server {
-#    listen 443;
-#    client_max_body_size 10M;
-#    server_name profitfilter.ru;
-#
-#    ssl                  on;
-#    ssl_certificate      <%=user_home %>/<%=app_name %>/server.crt;
-#    ssl_certificate_key  <%=user_home %>/<%=app_name %>/server.key;
-#    ssl_ciphers          HIGH:!aNULL:!MD5;
-#
-#    keepalive_timeout 5;
-#
-#    root <%=user_home %>/<%=app_name %>/public;
-#
-#    location / {
-#      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-#      proxy_set_header Host $http_host;
-#      proxy_set_header X-Forwarded-Proto $scheme;
-#      proxy_redirect off;
-#
-#      if (!-f $request_filename) {
-#        proxy_pass http://<%=app_name %>;
-#      }
-#    }
-#  }
+  server {
+    listen 443;
+    client_max_body_size 10M;
+    server_name <%=domain %>;
+
+    ssl                  on;
+    ssl_certificate      <%=user_home %>/<%=app_name %>/server.crt;
+    ssl_certificate_key  <%=user_home %>/<%=app_name %>/server.key;
+    ssl_ciphers          HIGH:!aNULL:!MD5;
+
+    keepalive_timeout 5;
+
+    root <%=user_home %>/<%=app_name %>/public;
+
+    location / {
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-Forwarded-Proto $scheme;
+      proxy_redirect off;
+
+      if (!-f $request_filename) {
+        proxy_pass http://<%=app_name %>;
+      }
+    }
+  }
 }
