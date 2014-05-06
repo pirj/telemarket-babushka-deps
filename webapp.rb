@@ -22,7 +22,7 @@ dep 'web app', :app_path, :app_repo, :domain do
     'libxml.managed',
     'libxslt.managed',
     'build-essential.managed',
-    'postgres.managed'.with('9.1'),
+    'postgres.managed'.with('9.3'),
     'redis-server.managed',
     'nginx running'.with(Dir.home, app_path, domain),
     # 'postgres running',
